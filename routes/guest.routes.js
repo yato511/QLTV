@@ -1,4 +1,5 @@
 const express = require("express");
+const { route } = require("./admin.routes");
 const router = express.Router();
 const config = require("../config/default.json");
 const moment = require("moment");
@@ -26,6 +27,36 @@ router.get("/login", async (req, res) => {
 		title: "Đăng nhập",
 	});
 });
+
+router.post("/login", async (req, res) => {
+	const user = await db.user.findOne({
+		where: {
+			username: req.body.username
+		}
+	});
+	if (user == null) {
+		return res.render("guest/login", {
+			layout: false,
+			title: "Đăng nhập",
+			err: "Tên đăng nhập hoặc mật khẩu không đúng"
+		});
+	}
+	const rs = bcrypt.compareSync(req.body.password, user.password);
+	if (rs === false) {
+		return res.render("guest/login", {
+			layout: false,
+			title: "Đăng nhập",
+			err: "Tên đăng nhập hoặc mật khẩu không đúng"
+		});
+	}
+	delete user.dataValues.password;
+  	req.session.isAuthenticated = true;
+  	req.session.authUser = user.dataValues;
+
+  	const url = req.query.retUrl || '/';
+  	res.redirect(url);
+})
+
 router.get("/signup", async (req, res) => {
 	res.render("guest/signup", {
 		layout: false,
