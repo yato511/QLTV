@@ -51,6 +51,7 @@ module.exports = function(sequelize, DataTypes) {
       comment: "null"
     }
   }, {
-    tableName: 'book'
+    tableName: 'book',
+    timestamps: false
   });
 };
