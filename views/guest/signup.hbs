@@ -19,24 +19,24 @@
 		</div>
 		<div class="row">
 			<div class="col-md-4 offset-md-4">
-				<form class="form-signin">
+				<form class="form-signin" method="POST" action="/signup">
 					<div class="text-center mb-4">
 						<h1 class="h3 mb-3 font-weight-normal">Đăng ký</h1>
 					</div>
 					<div class="form-label-group my-3">
-						<input type="text" id="input-username" class="form-control" placeholder="Tên đăng nhập"
+						<input type="text" name="username" id="input-username" class="form-control" placeholder="Tên đăng nhập"
 							required="" autofocus="" />
 					</div>
 					<div class="form-label-group my-3">
-						<input type="password" id="input-password" class="form-control" placeholder="Mật khẩu"
+						<input type="password" name="password" id="input-password" class="form-control" placeholder="Mật khẩu"
 							required="" />
 					</div>
 					<div class="form-label-group my-3">
-						<input type="text" id="input-name" class="form-control" placeholder="Họ và tên" required=""
+						<input type="text" name="name" id="input-name" class="form-control" placeholder="Họ và tên" required=""
 							autofocus="" />
 					</div>
 					<div class="form-label-group my-3">
-						<input type="text" id="input-class" class="form-control" placeholder="Lớp" required=""
+						<input type="text" name="class" id="input-class" class="form-control" placeholder="Lớp" required=""
 							autofocus="" />
 					</div>
 					<button class="btn btn-lg btn-primary btn-block" type="submit">
