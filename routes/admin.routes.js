@@ -30,7 +30,6 @@ router.post("/books", async (req, res) => {
 
 router.put("/books/:id", async (req, res) => {
 	const { id } = req.params;
-	console.log(req.body);
 	const book = await db.book.update(
 		req.body,
 		{
@@ -43,4 +42,13 @@ router.put("/books/:id", async (req, res) => {
 	return res.json(book)
 })
 
+router.delete("/books/:id", async (req, res) => {
+	const { id } = req.params;
+	const book = await db.book.destroy({
+		where: {
+			id
+		}
+	})
+	return res.json(book);
+})
 module.exports = router;
