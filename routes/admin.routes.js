@@ -28,4 +28,19 @@ router.post("/books", async (req, res) => {
 	return res.json(book instanceof db.book);
 })
 
+router.put("/books/:id", async (req, res) => {
+	const { id } = req.params;
+	console.log(req.body);
+	const book = await db.book.update(
+		req.body,
+		{
+			where: {
+				id
+			}
+		}
+	)
+	
+	return res.json(book)
+})
+
 module.exports = router;
