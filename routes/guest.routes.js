@@ -29,6 +29,7 @@ router.get("/login", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+	console.log("đã vô");
 	const user = await db.user.findOne({
 		where: {
 			username: req.body.username
@@ -64,7 +65,6 @@ router.get("/signup", async (req, res) => {
 	});
 });
 router.post("/signup", async (req, res) => {
-	console.log("đã vô")
 	const hash = bcrypt.hashSync(req.body.password, config.authentication.saltRounds);
 	let birthday = req.body.birthday;
 	let createdDate = req.body.createdDate;

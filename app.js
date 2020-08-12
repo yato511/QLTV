@@ -20,6 +20,8 @@ app.engine(
 );
 app.set("view engine", "hbs");
 
+require('./middlewares/session.mdw')(app);
+
 require("./middlewares/routes.mdw")(app);
 
 const PORT = 5000;
