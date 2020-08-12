@@ -22,4 +22,10 @@ router.get("/books", async (req, res) => {
 	return res.json(books);
 });
 
+router.post("/books", async (req, res) => {
+	const book = await db.book.create(req.body);
+
+	return res.json(book instanceof db.book);
+})
+
 module.exports = router;
