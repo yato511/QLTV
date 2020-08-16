@@ -19,7 +19,13 @@ router.get("/users", async (req, res) => {
 	});
 });
 router.get("/books", async (req, res) => {
-	const books = await db.book.findAll();
+	const books = await db.book.findAll({
+		include: [
+			{
+				model: db.category
+			}
+		]
+	});
 	return res.json(books);
 });
 
