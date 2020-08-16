@@ -13,10 +13,14 @@ router.get("/dashboard", async (req, res) => {
 	});
 });
 router.get("/users", async (req, res) => {
-	res.render("admin/users", {
-		title: "QL Độc giả",
-		layout: "adminLayout.hbs",
-	});
+	const users = await db.user.findAll({
+		include: [
+			{
+				model: db.black_list
+			}
+		]
+	})
+	res.json(users)
 });
 router.get("/books", async (req, res) => {
 	const books = await db.book.findAll({

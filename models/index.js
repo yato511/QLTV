@@ -38,4 +38,8 @@ db.book.belongsTo(db.category, {
   foreignKey: "cateId"
 })
 
+db.user.hasOne(db.black_list, {
+  foreignKey: "userId"
+})
+
 module.exports = db;
