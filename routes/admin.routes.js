@@ -26,29 +26,26 @@ router.post("/books", async (req, res) => {
 	const book = await db.book.create(req.body);
 
 	return res.json(book instanceof db.book);
-})
+});
 
 router.put("/books/:id", async (req, res) => {
 	const { id } = req.params;
-	const book = await db.book.update(
-		req.body,
-		{
-			where: {
-				id
-			}
-		}
-	)
-	
-	return res.json(book)
-})
+	const book = await db.book.update(req.body, {
+		where: {
+			id,
+		},
+	});
+
+	return res.json(book);
+});
 
 router.delete("/books/:id", async (req, res) => {
 	const { id } = req.params;
 	const book = await db.book.destroy({
 		where: {
-			id
-		}
-	})
+			id,
+		},
+	});
 	return res.json(book);
-})
+});
 module.exports = router;
