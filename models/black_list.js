@@ -3,17 +3,31 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('black_list', {
     'id': {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       comment: "null"
     },
     'userId': {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
+      comment: "null",
+      references: {
+        model: 'user',
+        key: 'id'
+      }
+    },
+    'date': {
+      type: DataTypes.DATE,
       allowNull: true,
       comment: "null"
     },
-    'date': {
+    'createdAt': {
+      type: DataTypes.DATE,
+      allowNull: true,
+      comment: "null"
+    },
+    'updatedAt': {
       type: DataTypes.DATE,
       allowNull: true,
       comment: "null"

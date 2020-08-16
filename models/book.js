@@ -8,10 +8,14 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       comment: "null"
     },
-    'cate': {
-      type: DataTypes.STRING(50),
+    'cateId': {
+      type: DataTypes.INTEGER(11),
       allowNull: true,
-      comment: "null"
+      comment: "null",
+      references: {
+        model: 'category',
+        key: 'id'
+      }
     },
     'title': {
       type: DataTypes.STRING(100),
@@ -29,7 +33,7 @@ module.exports = function(sequelize, DataTypes) {
       comment: "null"
     },
     'publishYear': {
-      type: "YEAR",
+      type: "YEAR(4)",
       allowNull: true,
       comment: "null"
     },
@@ -44,14 +48,17 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: '1',
       comment: "null"
     },
-    'createdDate': {
+    'createdAt': {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+      comment: "null"
+    },
+    'updatedAt': {
+      type: DataTypes.DATE,
+      allowNull: true,
       comment: "null"
     }
   }, {
-    tableName: 'book',
-    timestamps: false
+    tableName: 'book'
   });
 };

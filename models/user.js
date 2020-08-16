@@ -3,7 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('user', {
     'id': {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       primaryKey: true,
@@ -46,19 +46,22 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       comment: "null"
     },
-    'createdDate': {
+    'expiredDate': {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
       comment: "null"
     },
-    'expiredDate': {
+    'createdAt': {
+      type: DataTypes.DATE,
+      allowNull: true,
+      comment: "null"
+    },
+    'updatedAt': {
       type: DataTypes.DATE,
       allowNull: true,
       comment: "null"
     }
   }, {
-    tableName: 'user',
-    timestamps: false
+    tableName: 'user'
   });
 };

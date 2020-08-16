@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       comment: "null"
     },
     'userId': {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true,
       comment: "null",
       references: {
@@ -32,13 +32,17 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: '0',
       comment: "null"
     },
-    'borrowDate': {
+    'returnDate': {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
       comment: "null"
     },
-    'returnDate': {
+    'createdAt': {
+      type: DataTypes.DATE,
+      allowNull: true,
+      comment: "null"
+    },
+    'updatedAt': {
       type: DataTypes.DATE,
       allowNull: true,
       comment: "null"
