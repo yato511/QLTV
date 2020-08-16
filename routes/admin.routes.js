@@ -85,7 +85,7 @@ router.post("/books", async (req, res) => {
 		  cb(null, `${book.id}.png`)
 		},
 		destination: function (req, file, cb) {
-		  cb(null, `./public/imgs/`);
+		  cb(null, `./public/imgs/books/`);
 		},
 	});
 	const upload = multer({ storage });
