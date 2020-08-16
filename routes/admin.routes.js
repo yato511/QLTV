@@ -22,6 +22,29 @@ router.get("/users", async (req, res) => {
 	})
 	res.json(users)
 });
+
+router.get("/users/:id", async (req, res) => {
+	const { id } = req.params;
+	const borrows = await db.borrow_detail.findAll({
+		where: {
+			userId: id
+		},
+		include: [
+			{
+				model: db.book,
+				include: [
+					{
+						model: db.category
+					}
+				]
+			},
+			{
+				model: db.user
+			}
+		]
+	})
+	res.json(borrows);
+})
 router.get("/books", async (req, res) => {
 	const books = await db.book.findAll({
 		include: [

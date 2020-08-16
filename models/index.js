@@ -42,4 +42,12 @@ db.user.hasOne(db.black_list, {
   foreignKey: "userId"
 })
 
+db.borrow_detail.belongsTo(db.book, {
+  foreignKey: "bookId"
+})
+
+db.borrow_detail.belongsTo(db.user, {
+  foreignKey: "userId"
+})
+
 module.exports = db;
