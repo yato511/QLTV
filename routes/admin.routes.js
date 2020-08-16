@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../models/index.js");
+const multer = require("multer");
 
 router.get("/", async (req, res) => {
 	res.redirect("/admin/dashboard");
@@ -23,9 +24,23 @@ router.get("/books", async (req, res) => {
 });
 
 router.post("/books", async (req, res) => {
-	const book = await db.book.create(req.body);
-
-	return res.json(book instanceof db.book);
+	const book = await db.book.create(req.body.book);
+	const storage = multer.diskStorage({
+		filename: function (req, file, cb) {
+		  cb(null, `${book.id}.png`)
+		},
+		destination: function (req, file, cb) {
+		  cb(null, `./public/imgs/`);
+		},
+	});
+	const upload = multer({ storage });
+	upload.single("image")(req, res, function (err) {
+		if (err) {
+			res.json("error");
+		} else {
+		  res.status(200).json("success");
+		}
+	})
 });
 
 router.put("/books/:id", async (req, res) => {
