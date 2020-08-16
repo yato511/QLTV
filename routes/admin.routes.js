@@ -26,7 +26,29 @@ router.get("/books", async (req, res) => {
 			}
 		]
 	});
-	return res.json(books);
+
+	let result = [];
+
+	for (let book of books) {
+		if (book.isAvailable == 0) {
+			const borrow = await db.borrow_detail.findOne({
+				where: {
+					bookId: book.id
+				}
+			})
+
+			if (borrow) {
+				const user = await db.user.findOne({
+					where: {
+						id: borrow.userId
+					}
+				});
+				book.dataValues.user = user;
+			}
+		}
+		result.push(book.dataValues);
+	}
+	return res.json(result);
 });
 
 router.post("/books", async (req, res) => {
