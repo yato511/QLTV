@@ -58,4 +58,8 @@ db.cart.belongsTo(db.book, {
   foreignKey: "bookId"
 })
 
+db.category.hasMany(db.book, {
+  foreignKey: "cateId"
+})
+
 module.exports = db;
