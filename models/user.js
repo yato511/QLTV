@@ -60,6 +60,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: true,
       comment: "null"
+    },
+    'role': {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+      comment: "null"
     }
   }, {
     tableName: 'user'
