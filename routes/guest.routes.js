@@ -6,6 +6,7 @@ const moment = require("moment");
 const bcrypt = require("bcryptjs");
 const db = require("../models/index.js");
 const { Sequelize } = require("../models/index.js");
+const book = require("../models/book");
 const Op = Sequelize.Op;
 
 router.get("/", async (req, res) => {
@@ -175,7 +176,7 @@ router.post("/signup", async (req, res) => {
 		createdDate,
 	};
 	const ret = await db.user.create(entity);
-	res.redirect("/");
+	res.redirect("/login");
 });
 
 router.get("/logout", async (req, res) => {
@@ -214,8 +215,10 @@ router.get("/search", async (req, res) => {
 			},
 		],
 	});
-	res.status(200).json({
+	res.render("guest/search", {
+		title: "Tìm kiếm",
 		query,
+		total: books.length,
 		list: books,
 		user: req.session.authUser,
 	});
