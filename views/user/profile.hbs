@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-8 offset-2 text-center">
+            <h2 class="my-3">Thông tin cá nhân</h2>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Tên đăng nhập</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="title" value={{this.user.username}}>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Họ tên</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="author" value={{this.user.name}}>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Lớp</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="author" value={{this.user.class}}>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Email</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="publisher" value={{this.user.email}}>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Địa chỉ</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="publishYear" value={{this.user.address}}>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Mật khẩu cũ</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" name="publishYear">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Mật khẩu mới</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" name="publishYear">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-block btn-outline-success">Lưu</button>
+                    </div>
+                </div>
+        </div>
+        </form>
+    </div>
+</div>

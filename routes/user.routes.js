@@ -53,10 +53,10 @@ router.post("/add-cart", restrict, async (req, res) => {
 });
 
 router.post("/submit-cart", restrict, async (req, res) => {
-	const {userId} = req.body;
+	const { userId } = req.body;
 	const carts = await db.cart.findAll({
 		where: {
-			userId
+			userId,
 		},
 		include: [
 			{
@@ -67,23 +67,23 @@ router.post("/submit-cart", restrict, async (req, res) => {
 			},
 		],
 		raw: true,
-		nest: true
-	})
+		nest: true,
+	});
 
 	for (const cart of carts) {
 		await Promise.all([
 			db.borrow_detail.create({
 				userId,
 				bookId: cart.book.id,
-				confirmBorrow: false
+				confirmBorrow: false,
 			}),
 			db.cart.destroy({
 				where: {
 					bookId: cart.book.id,
-					userId
-				}
-			})
-		])
+					userId,
+				},
+			}),
+		]);
 	}
 
 	return res.status(201).json("success");
@@ -94,11 +94,17 @@ router.delete("/cart", restrict, async (req, res) => {
 	const cart = await db.cart.destroy({
 		where: {
 			bookId,
-			userId
-		}
-	})
+			userId,
+		},
+	});
 	return res.json(cart);
-})
+});
+router.get("/thong-tin", restrict, (req, res) => {
+	res.render("user/profile", {
+		title: "Thông tin cá nhân",
+		user: req.session.authUser,
+	});
+});
 
 router.get("/lich-su", restrict, async (req, res) => {
 	const id = req.session.authUser.id;
