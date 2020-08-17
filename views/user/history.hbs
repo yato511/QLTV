@@ -24,9 +24,9 @@
                                 {{#each list}}
                                 <tr>
                                     <td>{{this.index}}</td>
-                                    <td>{{this.title}}</td>
-                                    <td>{{this.author}}</td>
-                                    <td>{{this.createdAt}}</td>
+                                    <td>{{this.book.title}}</td>
+                                    <td>{{this.book.author}}</td>
+                                    <td>{{this.book.createdAt}}</td>
                                     <td>{{this.returnDate}}</td>
                                     <td style="text-align:center">
                                         {{#if this.isOver}}
