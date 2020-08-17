@@ -31,13 +31,13 @@
                             </div>
                             <div class="col-md-8">
                                 <h5>
-                                    <a href="/chi-tiet-sach/{{this.id}}">
+                                    <a href="/chi-tiet-sach/{{this.book.id}}">
                                         {{this.book.title}}
                                     </a>
                                 </h5>
                             </div>
                             <div class="col-md-2 text-right">
-                                <button class="btn btn-outline-danger">
+                                <button class="btn btn-outline-danger" onclick="removeBook({{this.book.id}})">
                                     Xóa
                                 </button>
                             </div>
@@ -61,3 +61,18 @@
     {{/if}}
 
 </div>
+
+{{#section 'js'}}
+<script>
+    function removeBook(id) {
+        $.ajax({
+			method: 'DELETE',
+			url: `/user/cart/${id}`,
+			success: (res) => {
+				$('.btn-add-cart').attr('disabled', true)
+				$('.btn-add-cart').text('Đã thêm')
+			}
+		})
+    }
+</script>
+{{/section}}
