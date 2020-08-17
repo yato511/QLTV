@@ -179,10 +179,10 @@ router.post("/signup", async (req, res) => {
 	res.redirect("/login");
 });
 
-router.get("/logout", async (req, res) => {
-	delete req.session.authUser;
-	req.isAuthenticated = false;
-	res.redirect(req.get("referer"));
+router.get("/logout", (req, res) => {
+	req.session.authUser = null;
+	req.session.isAuthenticated = false;
+	res.redirect(req.headers.referer);
 });
 
 router.get("/search", async (req, res) => {
