@@ -3,17 +3,19 @@ const router = express.Router();
 const db = require("../models/index.js");
 const multer = require("multer");
 const book = require("../models/book.js");
+const restrict = require("../middlewares/auth.mdw");
+const permit = require("../middlewares/authorization.mdw");
 
-router.get("/", async (req, res) => {
+router.get("/", restrict, permit("ADMIN"), async (req, res) => {
 	res.redirect("/admin/dashboard");
 });
-router.get("/dashboard", async (req, res) => {
+router.get("/dashboard", restrict, permit("ADMIN"), async (req, res) => {
 	res.render("admin/dashboard", {
 		title: "Dashboard",
 		layout: "adminLayout.hbs",
 	});
 });
-router.get("/users", async (req, res) => {
+router.get("/users", restrict, permit("ADMIN"), async (req, res) => {
 	let users = await db.user.findAll({
 		include: [
 			{
@@ -31,7 +33,7 @@ router.get("/users", async (req, res) => {
 	});
 });
 
-router.get("/users/:id", async (req, res) => {
+router.get("/users/:id", restrict, permit("ADMIN"), async (req, res) => {
 	const { id } = req.params;
 	const user = await db.user.findOne({
 		where: {
@@ -65,7 +67,7 @@ router.get("/users/:id", async (req, res) => {
 		data,
 	});
 });
-router.get("/books", async (req, res) => {
+router.get("/books", restrict, permit("ADMIN"), async (req, res) => {
 	const books = await db.book.findAll({
 		include: [
 			{
@@ -106,7 +108,7 @@ router.get("/books", async (req, res) => {
 	});
 });
 
-router.post("/books", async (req, res) => {
+router.post("/books", restrict, permit("ADMIN"), async (req, res) => {
 	const book = await db.book.create(req.body.book);
 	const storage = multer.diskStorage({
 		filename: function (req, file, cb) {
@@ -126,7 +128,7 @@ router.post("/books", async (req, res) => {
 	});
 });
 
-router.put("/books/:id", async (req, res) => {
+router.put("/books/:id", restrict, permit("ADMIN"), async (req, res) => {
 	const { id } = req.params;
 	const book = await db.book.update(req.body, {
 		where: {
@@ -137,7 +139,7 @@ router.put("/books/:id", async (req, res) => {
 	return res.json(book);
 });
 
-router.delete("/books/:id", async (req, res) => {
+router.delete("/books/:id", restrict, permit("ADMIN"), async (req, res) => {
 	const { id } = req.params;
 	const book = await db.book.destroy({
 		where: {

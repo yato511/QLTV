@@ -54,8 +54,13 @@ router.post("/login", async (req, res) => {
   	req.session.isAuthenticated = true;
   	req.session.authUser = user.dataValues;
 
-  	const url = req.query.retUrl || '/';
-  	res.redirect(url);
+	if (user.dataValues.role === "ADMIN") {
+		const url = req.query.retUrl || '/admin';
+  		res.redirect(url);
+	} else {
+		const url = req.query.retUrl || '/';
+  		res.redirect(url);
+	}
 })
 
 router.get("/signup", async (req, res) => {
