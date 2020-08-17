@@ -5,6 +5,8 @@ const config = require("../config/default.json");
 const moment = require("moment");
 const bcrypt = require("bcryptjs");
 const db = require("../models/index.js");
+const { Sequelize } = require("../models/index.js");
+const Op = Sequelize.Op;
 
 router.get("/", async (req, res) => {
 	const categories = await db.category.findAll({
@@ -154,6 +156,42 @@ router.get("/getNewBooks", async (req, res) => {
 		limit: 4
 	})
 	res.status(200).json(books);
+})
+
+router.get("/search", async (req, res) => {
+	const {query} = req.query;
+	const books = await db.book.findAll({
+		where: {
+			[Op.or]: [
+				{
+					title: {
+						[Op.like]: `%${query}%`
+					},
+				},
+				{
+					author: {
+						[Op.like]: `%${query}%`
+					},
+				},
+				{
+					publisher: {
+						[Op.like]: `%${query}%`
+					},
+				},
+			]
+		},
+		raw: true,
+		nest: true,
+		include: [
+			{
+				model: db.category
+			}
+		]
+	})
+	res.status(200).json({
+		query,
+		list:books
+	})
 })
 
 module.exports = router;
