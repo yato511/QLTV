@@ -25,7 +25,6 @@ router.get("/", async (req, res) => {
 		raw: true,
 		nest: true,
 	});
-	console.log(req.session.authUser);
 	res.render("guest/home", {
 		title: "Trang chủ",
 		category: categories,
@@ -182,7 +181,7 @@ router.post("/signup", async (req, res) => {
 router.get("/logout", (req, res) => {
 	req.session.authUser = null;
 	req.session.isAuthenticated = false;
-	res.redirect(req.headers.referer);
+	return res.redirect(req.headers.referer);
 });
 
 router.get("/search", async (req, res) => {
