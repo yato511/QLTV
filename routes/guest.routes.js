@@ -17,8 +17,26 @@ router.get("/", async (req, res) => {
 	});
 });
 router.get("/danh-sach/:id", async (req, res) => {
+	const [category, books] = await Promise.all([
+		db.category.findOne({
+			where: {
+				id: req.params.id
+			},
+			raw: true,
+			nest: true
+		}),
+		db.book.findAll({
+			where: {
+				cateId: req.params.id
+			},
+			raw: true, nest: true
+		})
+	])
+
 	res.render("guest/bookList", {
 		title: "Danh sách sách",
+		category: category,
+		list: books
 	});
 });
 router.get("/chi-tiet-sach/:id", async (req, res) => {
