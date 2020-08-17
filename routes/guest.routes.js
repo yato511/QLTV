@@ -7,8 +7,13 @@ const bcrypt = require("bcryptjs");
 const db = require("../models/index.js");
 
 router.get("/", async (req, res) => {
+	const categories = await db.category.findAll({
+		raw: true,
+		nest: true
+	});
 	res.render("guest/home", {
 		title: "Trang chủ",
+		category: categories
 	});
 });
 router.get("/danh-sach/:id", async (req, res) => {
