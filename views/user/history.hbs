@@ -1,10 +1,10 @@
 <div class="container">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-md-12">
             <h2>Lịch sử mượn trả: </h2>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-body" style="overflow:hidden">
@@ -17,7 +17,7 @@
                                     <th>Tác giả</th>
                                     <th>Ngày mượn</th>
                                     <th>Ngày trả</th>
-                                    <th>Quá hạn?</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -28,12 +28,7 @@
                                     <td>{{this.book.author}}</td>
                                     <td>{{this.book.createdAt}}</td>
                                     <td>{{this.returnDate}}</td>
-                                    <td style="text-align:center">
-                                        {{#if this.isOver}}
-                                        <i class="fas fa-check"></i>
-                                        {{else}}
-                                        {{/if}}
-                                    </td>
+
                                 </tr>
                                 {{/each}}
                             </tbody>

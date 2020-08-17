@@ -7,9 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <style>
+        img.card-img-top {
+            width: 100% !important;
+            height: 350px !important;
+        }
+
+        .col-md-3 .card {
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body style="overflow-x: hidden;">
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="/">Thư viện trường THPT Nguyễn Du</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -24,13 +35,20 @@
                     Tìm kiếm
                 </button>
             </form>
+            {{#if this.user}}
+            {{#if this.user.isAdmin}}
+            <a href="/admin" class="btn btn-outline-success" style="margin-right: 20px">Admin</a>
+            {{/if}}
             <a href="/user/gio-hang" class="text-light"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-            <a href="/login" class="text-light" style="margin-left: 20px;">Đăng nhập</a>
+            <a href="/user/lich-su" class="text-light"><i class="fa fa-history" style="margin-left: 20px;"
+                    aria-hidden="true"></i></a>
+            <a href="/logout" class="text-light" style="margin-left: 20px;">Đăng xuất</a>
+            {{else}} <a href="/login" class="text-light" style="margin-left: 20px;">Đăng nhập</a>
+            {{/if}}
         </div>
     </nav>
 
     {{{body}}}
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>

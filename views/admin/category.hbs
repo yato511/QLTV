@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <h1 class="mt-4">Quản lý danh mục
+
+        <button class="btn btn-outline-success btn-lg btn-add-cate" style="float: right">
+            Thêm danh mục mới
+        </button>
+    </h1>
+    <div class="card mb-4">
+        <div class="card-body" style="overflow:hidden">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã danh mục</th>
+                            <th>Tên danh mục</th>
+                            <th>Số lượng sách</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each list}}
+                        <tr>
+                            <td>{{this.index}}</td>
+                            <td>{{this.id}}</td>
+                            <td>{{this.name}}</td>
+                            <td>{{this.quantity}}</td>
+                        </tr>
+                        {{/each}}
+
+                    </tbody>
+                    <tfoot class="tfoot" hidden="true">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td><input class="form-control" type="text" id="input-name"></td>
+                            <td><button class="btn btn-outline-success w-100 btn-save">Lưu</button></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.btn-add-cate').click(() => {
+        $('.tfoot').removeAttr("hidden")
+    })
+    $('.btn-save').click(() => {
+        $.ajax({
+            method: "POST",
+            url: '/admin/add-cate',
+            data: { name: $('#input-name').val() },
+            success: () => {
+                location.href = '/admin/danh-muc'
+            }
+        })
+    })
+</script>

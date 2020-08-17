@@ -1,28 +1,63 @@
+<style>
+    .cart-item {
+        border: 1px solid;
+        padding: 10px 20px;
+    }
+
+    .img-cart {
+        width: 120px;
+        height: auto;
+    }
+</style>
+
 <div class="container">
     <div class="row my-3">
-        <div class="col-md-12">
+        <div class="col-md-10 offset-1">
             <h2>Giỏ hàng</h2>
         </div>
     </div>
     <div class="row my-3">
-        <div class="col-md-12">
+        <div class="col-md-10 offset-1">
+            {{#if this.isEmpty}}
+            Giỏ hàng trống
+            {{else}}
             {{#each this.list}}
-            <div class="row">
-                <div class="col-md-2">
-                    <img src="/imgs/books/{{this.book.id}}.png" alt="">
-                </div>
-                <div class="col-md-8">
-                    <a href="/chi-tiet-sach/{{this.id}}">
-                        {{this.book.title}}
-                    </a>
-                </div>
-                <div class="col-md-2">
-                    <button class="btn btn-outline-danger">
-                        Xóa
-                    </button>
+            <div class="row ">
+                <div class="col-md-12">
+                    <div class="cart-item">
+                        <div class="row" style="align-items: center;">
+                            <div class="col-md-2">
+                                <img src="/imgs/books/{{this.book.id}}.png" alt="" class="img-cart">
+                            </div>
+                            <div class="col-md-8">
+                                <h5>
+                                    <a href="/chi-tiet-sach/{{this.id}}">
+                                        {{this.book.title}}
+                                    </a>
+                                </h5>
+                            </div>
+                            <div class="col-md-2 text-right">
+                                <button class="btn btn-outline-danger">
+                                    Xóa
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             {{/each}}
+            {{/if}}
+
         </div>
     </div>
+    {{#if isEmpty}}
+    {{else}}<div class="row my-3">
+        <div class="col-md-10 offset-1 text-right">
+            <button class="btn btn-outline-success btn-lg">
+                Lập phiếu mượn
+            </button>
+        </div>
+    </div>
+    {{/if}}
+
 </div>

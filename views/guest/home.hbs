@@ -15,17 +15,20 @@
 		<div class="col-md-12">
 			<h2>Sách mới</h2>
 			<div class="row">
+				{{#each this.newBooks}}
 				<div class="col-md-3">
 					<div class="card">
-						<img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_123734.jpg"
-							class="card-img-top" />
+						<img src="/imgs/books/{{this.id}}.png" class="card-img-top" />
 						<div class="card-body px-3 py-1">
-							<h6><a href="/chi-tiet-sach/3">Card title</a></h6>
-							<p class="card-text mb-1">Tác giả: dsdsadasdas</p>
-							<p class="card-text">NXB: dasdsadas</p>
+							<h6><a href="/chi-tiet-sach/{{this.id}}">{{this.title}}</a></h6>
+							<p class="card-text mb-1">Tác giả: {{this.author}}</p>
+							<p class="card-text">Thể loại: <a
+									href="/danh-sach/{{this.category.id}}">{{this.category.name}}</a></p>
 						</div>
 					</div>
 				</div>
+				{{/each}}
+
 			</div>
 		</div>
 	</div>
