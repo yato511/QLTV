@@ -37,7 +37,7 @@
                                 </h5>
                             </div>
                             <div class="col-md-2 text-right">
-                                <button class="btn btn-outline-danger" onclick="removeBook({{this.book.id}})">
+                                <button class="btn btn-outline-danger" onclick="removeBook({{this.book.id}}, {{this.user.id}})">
                                     Xóa
                                 </button>
                             </div>
@@ -64,13 +64,15 @@
 
 {{#section 'js'}}
 <script>
-    function removeBook(id) {
+    function removeBook(bookId, userId) {
         $.ajax({
 			method: 'DELETE',
-			url: `/user/cart/${id}`,
+			url: `/user/cart`,
+            data: {
+                bookId, userId
+            },
 			success: (res) => {
-				$('.btn-add-cart').attr('disabled', true)
-				$('.btn-add-cart').text('Đã thêm')
+				location.reload();
 			}
 		})
     }

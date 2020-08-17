@@ -54,6 +54,17 @@ router.post("/add-cart", restrict, async (req, res) => {
 
 router.post("/submit-cart", restrict, async (req, res) => {});
 
+router.delete("/cart", restrict, async (req, res) => {
+	const { bookId, userId } = req.body;
+	const cart = await db.cart.destroy({
+		where: {
+			bookId,
+			userId
+		}
+	})
+	return res.json(cart);
+})
+
 router.get("/lich-su", restrict, async (req, res) => {
 	const id = req.session.authUser.id;
 	const borrows = await db.borrow_detail.findAll({
