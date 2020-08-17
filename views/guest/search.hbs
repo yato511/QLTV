@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row my-3">
 		<div class="col-md-8">
-			<h2>Kết quả tìm kiếm cho: abcd</h2>
+			<h2>Kết quả tìm kiếm cho: {{this.query}}</h2>
 		</div>
 		<div class="col-md-4 text-right">
 			<div class="input-group">
@@ -21,94 +21,19 @@
 	</div>
 
 	<div class="row my-3">
+		{{#each this.list}}
 		<div class="col-md-3 my-2">
 			<div class="card">
-				<img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_123734.jpg"
-					class="card-img-top" />
+				<img src={{this.imgSrc}} class="card-img-top" />
 				<div class="card-body px-3 py-1">
-					<h6><a href="book.html">Card title</a></h6>
-					<p class="card-text mb-1">Tác giả: dsdsadasdas</p>
-					<p class="card-text">NXB: dasdsadas</p>
+					<h6><a href="/chi-tiet-sach/{{this.id}}">{{this.img}}</a></h6>
+					<p class="card-text">Thể loại: <a href="/danh-sach/{{this.category.id}}">{{this.category.name}}</a>
+					</p>
+					<p class="card-text mb-1">Tác giả: {{this.author}}</p>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3 my-2">
-			<div class="card">
-				<img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_123734.jpg"
-					class="card-img-top" />
-				<div class="card-body px-3 py-1">
-					<h6><a href="book.html">Card title</a></h6>
-					<p class="card-text mb-1">Tác giả: dsdsadasdas</p>
-					<p class="card-text">NXB: dasdsadas</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3 my-2">
-			<div class="card">
-				<img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_123734.jpg"
-					class="card-img-top" />
-				<div class="card-body px-3 py-1">
-					<h6><a href="book.html">Card title</a></h6>
-					<p class="card-text mb-1">Tác giả: dsdsadasdas</p>
-					<p class="card-text">NXB: dasdsadas</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3 my-2">
-			<div class="card">
-				<img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_123734.jpg"
-					class="card-img-top" />
-				<div class="card-body px-3 py-1">
-					<h6><a href="book.html">Card title</a></h6>
-					<p class="card-text mb-1">Tác giả: dsdsadasdas</p>
-					<p class="card-text">NXB: dasdsadas</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3 my-2">
-			<div class="card">
-				<img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_123734.jpg"
-					class="card-img-top" />
-				<div class="card-body px-3 py-1">
-					<h6><a href="book.html">Card title</a></h6>
-					<p class="card-text mb-1">Tác giả: dsdsadasdas</p>
-					<p class="card-text">NXB: dasdsadas</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3 my-2">
-			<div class="card">
-				<img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_123734.jpg"
-					class="card-img-top" />
-				<div class="card-body px-3 py-1">
-					<h6><a href="book.html">Card title</a></h6>
-					<p class="card-text mb-1">Tác giả: dsdsadasdas</p>
-					<p class="card-text">NXB: dasdsadas</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3 my-2">
-			<div class="card">
-				<img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_123734.jpg"
-					class="card-img-top" />
-				<div class="card-body px-3 py-1">
-					<h6><a href="book.html">Card title</a></h6>
-					<p class="card-text mb-1">Tác giả: dsdsadasdas</p>
-					<p class="card-text">NXB: dasdsadas</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3 my-2">
-			<div class="card">
-				<img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_123734.jpg"
-					class="card-img-top" />
-				<div class="card-body px-3 py-1">
-					<h6><a href="book.html">Card title</a></h6>
-					<p class="card-text mb-1">Tác giả: dsdsadasdas</p>
-					<p class="card-text">NXB: dasdsadas</p>
-				</div>
-			</div>
-		</div>
+		{{/each}}
 	</div>
 
 	<nav aria-label="Page navigation example">
