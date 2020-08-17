@@ -50,4 +50,12 @@ db.borrow_detail.belongsTo(db.user, {
   foreignKey: "userId"
 })
 
+db.cart.belongsTo(db.user, {
+  foreignKey: "userId"
+})
+
+db.cart.belongsTo(db.book, {
+  foreignKey: "bookId"
+})
+
 module.exports = db;

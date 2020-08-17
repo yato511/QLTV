@@ -6,14 +6,14 @@
     </div>
     <div class="row my-3">
         <div class="col-md-12">
+            {{#each this.list}}
             <div class="row">
                 <div class="col-md-2">
-                    <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_123734.jpg"
-                        alt="">
+                    <img src="/imgs/books/{{this.book.id}}.png" alt="">
                 </div>
                 <div class="col-md-8">
                     <a href="/chi-tiet-sach/{{this.id}}">
-                        {{this.title}}
+                        {{this.book.title}}
                     </a>
                 </div>
                 <div class="col-md-2">
@@ -22,7 +22,7 @@
                     </button>
                 </div>
             </div>
+            {{/each}}
         </div>
     </div>
-
 </div>

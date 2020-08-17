@@ -4,9 +4,26 @@ const router = express.Router();
 const restrict = require("../middlewares/auth.mdw");
 const db = require("../models/index");
 
-router.get("/gio-hang", restrict, (req, res) => {
+router.get("/gio-hang", restrict, async (req, res) => {
+	const carts = await db.cart.findAll({
+		where: {
+			userId: req.session.authUser.id
+		},
+		include: [
+			{
+				model: db.user
+			},
+			{
+				model: db.book
+			}
+		],
+		raw: true,
+		nest:true
+	})
+	console.log(carts);
 	res.render("user/cart", {
 		title: "Giỏ hàng",
+		list: carts
 	});
 });
 
