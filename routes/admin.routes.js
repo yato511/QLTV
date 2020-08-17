@@ -5,6 +5,7 @@ const book = require("../models/book.js");
 const restrict = require("../middlewares/auth.mdw");
 const permit = require("../middlewares/authorization.mdw");
 const upload = require("../middlewares/uploadBookImage.mdw");
+const { route } = require("./guest.routes.js");
 
 router.get("/", restrict, permit("ADMIN"), async (req, res) => {
 	res.redirect("/admin/dashboard");
@@ -33,12 +34,36 @@ router.get("/users", restrict, permit("ADMIN"), async (req, res) => {
 	});
 });
 
+router.post("/ban-user", restrict, permit("ADMIN"), async (req, res) => {
+	const { userId, id } = req.body;
+	console.log(id);
+	let black_list;
+	if (!id) {
+		black_list = await db.black_list.create({
+			userId
+		})
+	} else {
+		black_list = await db.black_list.destroy({
+			where: {
+				id
+			}
+		})
+	}
+	return res.status(200).json(black_list);
+})
+
 router.get("/users/:id", restrict, permit("ADMIN"), async (req, res) => {
 	const { id } = req.params;
 	const user = await db.user.findOne({
 		where: {
 			id: id,
 		},
+		include: [
+			{
+				model: db.black_list,
+			},
+		],
+		nest: true,
 		raw: true,
 	});
 	const borrows = await db.borrow_detail.findAll({
@@ -60,7 +85,7 @@ router.get("/users/:id", restrict, permit("ADMIN"), async (req, res) => {
 		isOver: true,
 	}));
 	const data = { ...user, list };
-	console.log(list);
+	console.log(data);
 	res.render("admin/usersDetail", {
 		title: "Quản lý độc giả",
 		layout: "adminLayout.hbs",

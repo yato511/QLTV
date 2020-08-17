@@ -37,7 +37,7 @@
 								<a href="/admin/users/{{this.id}}" class="btn btn-info">
 									<i class="fas fa-info-circle"></i>
 								</a>
-								<button type="button" class="btn btn-danger">
+								<button onclick="banUser({{this.id}}, {{this.black_list.id}})" type="button" class="btn btn-danger btn-ban-user" banId="{{this.black_list.id}}" userId="{{this.id}}">
 									<i class="fas fa-ban"></i>
 								</button>
 							</td>
@@ -50,3 +50,19 @@
 	</div>
 
 </div>
+{{#section 'js'}}
+<script>
+	function banUser(userId, id) {
+		$.ajax({
+			method: 'POST',
+			url: '/admin/ban-user',
+			data: {
+				userId, id
+			},
+			success: (res) => {
+				location.reload();
+			}
+		})
+	}
+</script>
+{{/section}}

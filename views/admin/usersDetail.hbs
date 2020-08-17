@@ -1,6 +1,10 @@
 <div class="container-fluid">
     <h2 class="mt-4">{{this.data.name}}
-        <button class="btn btn-danger btn-lg" style="float: right">Thêm vào DS Đen</button>
+        {{#if this.data.black_list.id}}
+        <button class="btn btn-danger btn-lg" onclick="banUser({{this.data.id}}, {{this.data.black_list.id}})" style="float: right">Xoá khỏi DS Đen</button>
+        {{else}}
+        <button class="btn btn-danger btn-lg" onclick="banUser({{this.data.id}}, null)" style="float: right">Thêm vào DS Đen</button>
+        {{/if}}
     </h2>
     <div>
         <strong>Lớp: </strong> {{this.data.class}}
@@ -53,3 +57,20 @@
     </div>
 
 </div>
+
+{{#section 'js'}}
+<script>
+	function banUser(userId, id) {
+		$.ajax({
+			method: 'POST',
+			url: '/admin/ban-user',
+			data: {
+				userId, id
+			},
+			success: (res) => {
+				location.reload();
+			}
+		})
+	}
+</script>
+{{/section}}
