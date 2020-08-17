@@ -9,23 +9,48 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<h2>Nha gia kim</h2>
+							<h2>{{this.book.title}}</h2>
 						</div>
 						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Tac gia: paulo</li>
-							<li class="list-group-item">The loai: abc- adef</li>
-							<li class="list-group-item">NXB: vh</li>
+							<li class="list-group-item">Tác giả: {{this.book.author}}</li>
+							<li class="list-group-item">Thể loại: <a
+									href="/danh-sach/{{this.book.category.id}}">{{this.book.category.name}}</a></li>
+							<li class="list-group-item">NXB: {{this.book.publisher}}</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 			<div class="row mt-4">
 				<div class="col-md-12 text-right">
-					<button type="button" class="btn btn-success">
-						Them vao list
+					{{#if isAvailable}}
+					<button type="button" class="btn btn-success btn-add-cart" bookID={{this.book.id}}
+						userID={{this.user.ID}}>
+						Thêm vào list
 					</button>
+					{{else}}<button type="button" disabled class="btn btn-success">
+						Sách không có sẵn
+					</button>
+					{{/if}}
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script>
+	$('.btn-add-cart').click((e) => {
+		const bookID = $(e.target).attr('bookID');
+		const userID = $(e.target).attr('userID');
+		$.ajax({
+			method: 'POST',
+			url: '/user/add-cart'
+			data: {
+				bookID, userID
+			},
+			success: (res) => {
+				$('.btn-add-cart').attr('disabled', true)
+				$('.btn-add-cart').text('Đã thêm')
+			}
+		})
+	})
+</script>

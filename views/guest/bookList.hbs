@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row my-3">
 		<div class="col-md-8">
-			<h2>Tên danh mục</h2>
+			<h2>{{this.category.name}}</h2>
 		</div>
 		<div class="col-md-4 text-right">
 			<div class="input-group">
@@ -21,50 +21,19 @@
 	</div>
 
 	<div class="row my-3">
+		{{#each this.list}}
 		<div class="col-md-3 my-2">
 			<div class="card">
 				<img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_123734.jpg"
 					class="card-img-top" />
 				<div class="card-body px-3 py-1">
-					<h6><a href="/chi-tiet-sach/1">Card title</a></h6>
-					<p class="card-text mb-1">Tác giả: dsdsadasdas</p>
-					<p class="card-text">NXB: dasdsadas</p>
+					<h6><a href="/chi-tiet-sach/{{this.id}}">{{this.title}}</a></h6>
+					<p class="card-text mb-1">Tác giả: {{this.author}}</p>
+					<p class="card-text">NXB: {{this.publisher}}</p>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3 my-2">
-			<div class="card">
-				<img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_123734.jpg"
-					class="card-img-top" />
-				<div class="card-body px-3 py-1">
-					<h6><a href="/chi-tiet-sach/2">Card title</a></h6>
-					<p class="card-text mb-1">Tác giả: dsdsadasdas</p>
-					<p class="card-text">NXB: dasdsadas</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3 my-2">
-			<div class="card">
-				<img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_123734.jpg"
-					class="card-img-top" />
-				<div class="card-body px-3 py-1">
-					<h6><a href="/chi-tiet-sach/3">Card title</a></h6>
-					<p class="card-text mb-1">Tác giả: dsdsadasdas</p>
-					<p class="card-text">NXB: dasdsadas</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3 my-2">
-			<div class="card">
-				<img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_123734.jpg"
-					class="card-img-top" />
-				<div class="card-body px-3 py-1">
-					<h6><a href="/chi-tiet-sach/4">Card title</a></h6>
-					<p class="card-text mb-1">Tác giả: dsdsadasdas</p>
-					<p class="card-text">NXB: dasdsadas</p>
-				</div>
-			</div>
-		</div>
+		{{/each}}
 	</div>
 
 	<nav aria-label="Page navigation example">

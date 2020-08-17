@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-8 offset-2 text-center">
+            <h2 class="my-3">Thêm sách mới</h2>
+            <form method="POST">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Tên sách</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="title">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Tác giả</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="author">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Thể loại</label>
+                    <div class="col-sm-10">
+                        <select class="custom-select">
+                            {{#each this.category}}
+                            <option value={{this.id}}>{{this.name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nhà XB</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="publisher">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Năm XB</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="publishYear">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Ghi chú</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="note"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Hình ảnh</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control" name="image">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-block btn-outline-success">Lưu</button>
+                    </div>
+                </div>
+        </div>
+        </form>
+    </div>
+</div>

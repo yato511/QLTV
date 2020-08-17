@@ -1,5 +1,10 @@
 <div class="container-fluid">
-	<h1 class="mt-4">Quản lý sách</h1>
+	<h1 class="mt-4">Quản lý sách
+
+		<a href="/admin/them-sach" class="btn btn-outline-success btn-lg" style="float: right">
+			Thêm sách mới
+		</a>
+	</h1>
 	<div class="card mb-4">
 		<div class="card-body" style="overflow:hidden">
 			<div class="table-responsive">
@@ -34,9 +39,9 @@
 							</td>
 							<td>{{this.user.username}}</td>
 							<td>
-								<button type="button" class="btn btn-info">
+								<a href="/chi-tiet-sach/{{this.id}}" target="_blank" class="btn btn-info">
 									<i class="fas fa-info-circle"></i>
-								</button>
+								</a>
 							</td>
 						</tr>
 						{{/each}}

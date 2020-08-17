@@ -1,63 +1,12 @@
 <div class="container">
 	<div class="row mt-5">
 		<div class="col-md-12">
-			<h2>Sách bổ trợ môn học</h2>
-			<div style="display: flex; justify-content: space-between">
-				<div><a href="/" class="btn btn-outline-success btn-lg" style="width: 100%">Toán</a></div>
-				<div><a href="/" class="btn btn-outline-success btn-lg" style="width: 100%">Vật lý</a></div>
-				<div><a href="/" class="btn btn-outline-success btn-lg" style="width: 100%">Hóa học</a>
-				</div>
-				<div><a href="/" class="btn btn-outline-success btn-lg" style="width: 100%">Sinh học</a>
-				</div>
-				<div> <a href="/" class="btn btn-outline-success btn-lg" style="width: 100%">Ngữ văn</a>
-				</div>
-				<div><a href="/" class="btn btn-outline-success btn-lg" style="width: 100%">Tiếng Anh</a>
-				</div>
-				<div><a href="/" class="btn btn-outline-success btn-lg" style="width: 100%">Lịch sử</a>
-				</div>
-				<div> <a href="/" class="btn btn-outline-success btn-lg" style="width: 100%">Địa lý</a>
-				</div>
-				<div> <a href="/" class="btn btn-outline-success btn-lg" style="width: 100%">Tin học</a>
-				</div>
-				<div> <a href="/danh-sach/11" class="btn btn-outline-success btn-lg" style="width: 100%">Test</a>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-12 mt-3">
-			<h2>Sách khoa học thường thức</h2>
+			<h2>Danh mục sách</h2>
 			<div class="row">
-				<div class="col-md-4 my-1">
-					<a href="/" class="btn btn-outline-primary btn-lg" style="width: 100%">Tâm lý - Kỹ năng sống</a>
-				</div>
-				<div class="col-md-4 my-1">
-					<a href="/" class="btn btn-outline-primary btn-lg" style="width: 100%">Công nghệ - Kỹ thuật</a>
-				</div>
-				<div class="col-md-4 my-1">
-					<a href="/" class="btn btn-outline-primary btn-lg" style="width: 100%">Chính trị - Văn hóa - Tôn
-						giáo</a>
-				</div>
-				<div class="col-md-4 my-1">
-					<a href="/" class="btn btn-outline-primary btn-lg" style="width: 100%">Thiên văn</a>
-				</div>
-				<div class="col-md-4 my-1">
-					<a href="/" class="btn btn-outline-primary btn-lg" style="width: 100%">Thể thao</a>
-				</div>
-				<div class="col-md-4 my-1">
-					<a href="/" class="btn btn-outline-primary btn-lg" style="width: 100%">Nghệ thuật</a>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-12 mt-3">
-			<h2>Tiểu thuyết - Giải trí</h2>
-			<div class="row">
-				<div class="col-md-4 my-1">
-					<a href="/" class="btn btn-outline-danger btn-lg" style="width: 100%">Giải trí</a>
-				</div>
-				<div class="col-md-4 my-1">
-					<a href="/" class="btn btn-outline-danger btn-lg" style="width: 100%">Truyện - Tiểu thuyết</a>
-				</div>
-				<div class="col-md-4 my-1">
-					<a href="/" class="btn btn-outline-danger btn-lg" style="width: 100%">Khác</a>
+				<div class="col-md-12">
+					{{#each this.category}}
+					<a href="/danh-sach/{{this.id}}" class="btn btn-outline-success btn-lg">{{this.name}}</a>
+					{{/each}}
 				</div>
 			</div>
 		</div>

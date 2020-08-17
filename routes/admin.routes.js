@@ -146,4 +146,16 @@ router.delete("/books/:id", async (req, res) => {
 	});
 	return res.json(book);
 });
+
+router.get("/them-sach", async (req, res) => {
+	const category = await db.category.findAll({
+		raw: true,
+	});
+	res.render("admin/addBook", {
+		title: "Thêm sách",
+		layout: "adminLayout.hbs",
+		category,
+	});
+});
+
 module.exports = router;
