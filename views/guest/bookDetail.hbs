@@ -1,7 +1,7 @@
 <div class="container py-5">
 	<div class="row">
 		<div class="col-md-4">
-			<img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_123734.jpg"
+			<img src="/imgs/books/{{this.book.id}}.png"
 				style="width: 100%;" />
 		</div>
 		<div class="col-md-8">
@@ -22,11 +22,18 @@
 			</div>
 			<div class="row mt-4">
 				<div class="col-md-12 text-right">
-					{{#if isAvailable}}
+					{{#if this.book.isAvailable}}
+					{{#if isInCart}}
+					<button type="button" disabled class="btn btn-success btn-add-cart" bookID={{this.book.id}}
+						userID={{this.user.id}}>
+						Đã thêm
+					</button>
+					{{else}}
 					<button type="button" class="btn btn-success btn-add-cart" bookID={{this.book.id}}
-						userID={{this.user.ID}}>
+						userID={{this.user.id}}>
 						Thêm vào list
 					</button>
+					{{/if}}
 					{{else}}<button type="button" disabled class="btn btn-success">
 						Sách không có sẵn
 					</button>
@@ -36,16 +43,16 @@
 		</div>
 	</div>
 </div>
-
+{{#section 'js'}}
 <script>
 	$('.btn-add-cart').click((e) => {
-		const bookID = $(e.target).attr('bookID');
-		const userID = $(e.target).attr('userID');
+		const bookId = $(e.target).attr('bookID');
+		const userId = $(e.target).attr('userID');
 		$.ajax({
 			method: 'POST',
-			url: '/user/add-cart'
+			url: '/user/add-cart',
 			data: {
-				bookID, userID
+				bookId, userId
 			},
 			success: (res) => {
 				$('.btn-add-cart').attr('disabled', true)
@@ -54,3 +61,4 @@
 		})
 	})
 </script>
+{{/section}}

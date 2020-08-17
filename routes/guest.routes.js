@@ -17,8 +17,32 @@ router.get("/danh-sach/:id", async (req, res) => {
 	});
 });
 router.get("/chi-tiet-sach/:id", async (req, res) => {
+	const [book, cartCount] = await Promise.all([
+		db.book.findOne({
+			where: {
+				id: req.params.id
+			},
+			include: [
+				{
+					model: db.category
+				}
+			],
+			raw: true,
+			nest: true
+		}),
+		db.cart.count({
+			where: {
+				userId: req.session.isAuthenticated ? req.session.authUser.id : -1,
+				bookId: req.params.id
+			}
+		})
+	])
+	
 	res.render("guest/bookDetail", {
 		title: "Chi tiết sách",
+		book,
+		user: req.session.authUser,
+		isInCart: cartCount > 0
 	});
 });
 router.get("/login", async (req, res) => {

@@ -10,12 +10,15 @@ app.use(
 		extended: false,
 	})
 );
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 app.engine(
 	"hbs",
 	exphbs({
 		defaultLayout: "userLayout.hbs",
+		helpers: {
+			section: hbs_sections(),
+		}
 	})
 );
 app.set("view engine", "hbs");
