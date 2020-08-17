@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../models/index.js");
-const multer = require("multer");
 const book = require("../models/book.js");
 const restrict = require("../middlewares/auth.mdw");
 const permit = require("../middlewares/authorization.mdw");
+const upload = require("../middlewares/uploadBookImage.mdw");
 
 router.get("/", restrict, permit("ADMIN"), async (req, res) => {
 	res.redirect("/admin/dashboard");
@@ -108,24 +108,18 @@ router.get("/books", restrict, permit("ADMIN"), async (req, res) => {
 	});
 });
 
-router.post("/books", restrict, permit("ADMIN"), async (req, res) => {
-	const book = await db.book.create(req.body.book);
-	const storage = multer.diskStorage({
-		filename: function (req, file, cb) {
-			cb(null, `${book.id}.png`);
-		},
-		destination: function (req, file, cb) {
-			cb(null, `./public/imgs/books/`);
-		},
+router.post("/them-sach", restrict, permit("ADMIN"), upload.single("image"), async (req, res) => {
+	console.log(req.body);
+	const book = await db.book.create({
+		id: req.body.id,
+		title: req.body.title,
+		cateId: +req.body.category,
+		author: req.body.author,
+		publisher: req.body.publisher,
+		publishYear: req.body.publishYear,
+		note: req.body.note
 	});
-	const upload = multer({ storage });
-	upload.single("image")(req, res, function (err) {
-		if (err) {
-			res.json("error");
-		} else {
-			res.status(200).json("success");
-		}
-	});
+	res.redirect("/admin/books");
 });
 
 router.put("/books/:id", restrict, permit("ADMIN"), async (req, res) => {
