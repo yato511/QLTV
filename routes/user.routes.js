@@ -52,7 +52,42 @@ router.post("/add-cart", restrict, async (req, res) => {
 	return res.status(200).json(cart);
 });
 
-router.post("/submit-cart", restrict, async (req, res) => {});
+router.post("/submit-cart", restrict, async (req, res) => {
+	const {userId} = req.body;
+	const carts = await db.cart.findAll({
+		where: {
+			userId
+		},
+		include: [
+			{
+				model: db.user,
+			},
+			{
+				model: db.book,
+			},
+		],
+		raw: true,
+		nest: true
+	})
+
+	for (const cart of carts) {
+		await Promise.all([
+			db.borrow_detail.create({
+				userId,
+				bookId: cart.book.id,
+				confirmBorrow: false
+			}),
+			db.cart.destroy({
+				where: {
+					bookId: cart.book.id,
+					userId
+				}
+			})
+		])
+	}
+
+	return res.status(201).json("success");
+});
 
 router.delete("/cart", restrict, async (req, res) => {
 	const { bookId, userId } = req.body;

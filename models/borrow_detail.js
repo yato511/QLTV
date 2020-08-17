@@ -3,10 +3,12 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('borrow_detail', {
     'id': {
-      type: DataTypes.STRING(20),
+      type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
-      comment: "null"
+      primaryKey: true,
+      comment: "null",
+      autoIncrement: true
     },
     'userId': {
       type: DataTypes.INTEGER(11),
