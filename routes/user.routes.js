@@ -37,4 +37,29 @@ router.post("/add-cart", restrict, async (req, res) => {
 	return res.status(200).json(cart);
 })
 
+router.get("/lich-su", restrict, async (req, res) => {
+	const id = req.session.authUser.id;
+	const borrows = await db.borrow_detail.findAll({
+		where: {
+			userId: id
+		},
+		include: [
+			{
+				model: db.book
+			}
+		],
+		raw: true,
+		nest: true
+	})
+	const list = borrows.map((item, index) => ({
+		index: index + 1,
+		...item,
+		isOver: true,
+	}));
+	res.render("user/history", {
+		title: "Lịch sử",
+		list
+	})
+})
+
 module.exports = router;
