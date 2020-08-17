@@ -145,4 +145,15 @@ router.post("/signup", async (req, res) => {
 		title: "Đăng ký",
 	});
 })
+
+router.get("/getNewBook", async (req, res) => {
+	const books = await db.book.findAll({
+		order: [
+			['createdAt', 'DESC']
+		],
+		limit: 4
+	})
+	res.status(200).json(books);
+})
+
 module.exports = router;
