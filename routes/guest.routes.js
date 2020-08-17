@@ -146,7 +146,7 @@ router.post("/signup", async (req, res) => {
 	});
 })
 
-router.get("/getNewBook", async (req, res) => {
+router.get("/getNewBooks", async (req, res) => {
 	const books = await db.book.findAll({
 		order: [
 			['createdAt', 'DESC']
