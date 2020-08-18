@@ -142,4 +142,10 @@ router.get("/lich-su", restrict, async (req, res) => {
 	});
 });
 
+router.get("/logout", restrict, (req, res) => {
+	req.session.authUser = null;
+	req.session.isAuthenticated = false;
+	return res.redirect(req.headers.referer);
+});
+
 module.exports = router;

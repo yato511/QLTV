@@ -127,10 +127,10 @@ router.post("/login", async (req, res) => {
 
 	if (user.dataValues.role === "ADMIN") {
 		const url = req.query.retUrl || "/admin";
-		res.redirect(url);
+		return res.redirect(url);
 	} else {
 		const url = req.query.retUrl || "/";
-		res.redirect(url);
+		return res.redirect(url);
 	}
 });
 
@@ -176,12 +176,6 @@ router.post("/signup", async (req, res) => {
 	};
 	const ret = await db.user.create(entity);
 	res.redirect("/login");
-});
-
-router.get("/logout", (req, res) => {
-	req.session.authUser = null;
-	req.session.isAuthenticated = false;
-	return res.redirect(req.headers.referer);
 });
 
 router.get("/search", async (req, res) => {
