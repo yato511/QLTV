@@ -77,6 +77,14 @@ router.post("/submit-cart", restrict, async (req, res) => {
 				bookId: cart.book.id,
 				confirmBorrow: false,
 			}),
+			db.book.update(
+				{ ...cart.book, isAvailable: 0 },
+				{
+					where: {
+						id: cart.book.id,
+					},
+				}
+			),
 			db.cart.destroy({
 				where: {
 					bookId: cart.book.id,
@@ -126,6 +134,7 @@ router.get("/lich-su", restrict, async (req, res) => {
 		createdAt: formatDateTime(item.createdAt),
 		returnDate: formatDateTime(item.returnDate),
 	}));
+	console.log(list);
 	res.render("user/history", {
 		title: "Lịch sử",
 		list,

@@ -85,6 +85,7 @@ router.get("/users/:id", restrict, permit("ADMIN"), async (req, res) => {
 		nest: true,
 		raw: true,
 	});
+	user.createdAt = formatDateTime(user.createdAt);
 	const borrows = await db.borrow_detail.findAll({
 		where: {
 			userId: id,
